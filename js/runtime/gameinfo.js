@@ -5,6 +5,28 @@ const atlas = new Image()
 atlas.src = 'images/Common.png'
 
 export default class GameInfo {
+
+  countdown = 30
+  timer = null;
+  callback = null
+
+  constructor(callback) {
+    this.callback = callback
+    if (this.timer === null) {
+      this.timer = setInterval(this.updateCountdown, 1000);
+    }
+  }
+
+  updateCountdown = () => {
+    this.countdown = this.countdown - 20;
+    if (this.countdown <= 0) {
+        clearInterval(this.timer); // 停止计时器
+        // 可以在这里添加倒计时结束后的逻辑
+        this.timer = null;
+        this.callback()
+    }
+  }
+
   renderGameScore(ctx, score) {
     ctx.fillStyle = '#ffffff'
     ctx.font = '20px Arial'
@@ -13,6 +35,17 @@ export default class GameInfo {
       score,
       10,
       30
+    )
+  }
+
+  renderCountdown(ctx) {
+		ctx.fillStyle = '#ffffff'
+		ctx.font = '20px Arial'
+
+		ctx.fillText(
+			this.countdown,
+			10,
+			60
     )
   }
 

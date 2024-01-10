@@ -15,7 +15,21 @@ export default class Main {
   constructor() {
     // 维护当前requestAnimationFrame的id
     this.aniId = 0
+    wx.getUserInfo({
+      lang: 'zh_CN',
+      success: (info) => {
+        console.log(1)
+        console.log(info)
+      },
+      error: (e) => {
+        console.log(2)
+        console.log(e)
+      }
+    })
 
+    wx.getGameServerManager()
+    // var info = wx.getWindowInfo()
+    // console.log(info)
     this.restart()
   }
 
@@ -29,7 +43,9 @@ export default class Main {
 
     this.bg = new BackGround(ctx)
     this.player = new Player(ctx)
-    this.gameinfo = new GameInfo()
+    this.gameinfo = new GameInfo(() => {
+      console.log("game end")
+    })
     // this.music = new Music()
 
     this.bindLoop = this.loop.bind(this)
@@ -126,6 +142,7 @@ export default class Main {
     })
 
     this.gameinfo.renderGameScore(ctx, databus.score)
+    this.gameinfo.renderCountdown(ctx)
 
     // 游戏结束停止帧循环
     if (databus.gameOver) {
