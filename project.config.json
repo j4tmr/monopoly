@@ -39,7 +39,7 @@
         "ignoreUploadUnusedFiles": true
     },
     "compileType": "game",
-    "libVersion": "2.20.1",
+    "libVersion": "3.3.0",
     "appid": "wx6ac3f5090a6b99c5",
     "projectname": "monopoly",
     "packOptions": {
