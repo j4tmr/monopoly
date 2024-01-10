@@ -1,3 +1,5 @@
+# monopoly
+
 ## quickstart
 
 ## 源码目录介绍
@@ -22,4 +24,4 @@
 ├── databus.js                             // 管控游戏状态
 └── main.js                                // 游戏入口主函数
 
-```# monopoly
+```
